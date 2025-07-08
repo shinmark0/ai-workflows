@@ -1,0 +1,1074 @@
+app:
+  description: 스케치를 이용하여 페인팅 결과를 반환하는 워크플로우. shinmark0@gmail.com
+  icon: heart_eyes
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: All in one make AI Pic
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.16@d41b09aca46cdd3876f70b4c91d464c4588fc0bdc844ced6ee426283ead6ce8e
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/comfyui:0.1.4@2935d68be94164a2739bc044eb412f6e6d7a510b1e4384f61d865a218a58e20c
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 189f24b1-cbfd-44c9-94b8-fd401983856c
+    name: image_mode_key
+    selector:
+    - conversation
+    - image_mode_key
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: "0. 입력창의 텍스트는 필수입니다. 아무것도 입력하고 싶지 않다면 . 을 입력해 주세요.\n1. 이미지가\
+      \ 없으면 일반적인 이미지생성 ai 처럼, 입력창의 텍스트를 프롬프트로 이미지를 생성합니다.\n2. 이미지가 있다면 이미지의 형태를 LLM\
+      \ 이 분석해 프롬프트를 생성하지만, 명확한 지정이 필요한 요소들은 대화창에 입력해서 직접 지정할 수 있으며, 대화창에 입력한 값이 우선됩니다.\n\
+      3. 이미지 용도는 아래와 같습니다.\n  * controlnet canny : 스케치 이미지인 경우 사용합니다.\n  * controlnet\
+      \ depth : 모노톤, 세피아 톤 채색 등, 이미 채색된 이미지에 사용합니다.\n  * image to image : 기존 이미지를\
+      \ 이용하여 새로운 이미지를 적용할 때 사용합니다."
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1744115843538-source-1751367826463-target
+      source: '1744115843538'
+      sourceHandle: source
+      target: '1751367826463'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1751367826463-true-1749858639692-target
+      source: '1751367826463'
+      sourceHandle: 'true'
+      target: '1749858639692'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1749858639692-true-1749858977305-target
+      source: '1749858639692'
+      sourceHandle: 'true'
+      target: '1749858977305'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1749858639692-6c09b274-abf3-487d-84ac-d56eb603c16f-17498593766000-target
+      source: '1749858639692'
+      sourceHandle: 6c09b274-abf3-487d-84ac-d56eb603c16f
+      target: '17498593766000'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1749858639692-042e23bb-836b-4df2-8a15-ea81ec9432ee-17498593785460-target
+      source: '1749858639692'
+      sourceHandle: 042e23bb-836b-4df2-8a15-ea81ec9432ee
+      target: '17498593785460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1751367826463-true-1748981258358-target
+      source: '1751367826463'
+      sourceHandle: 'true'
+      target: '1748981258358'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1751367826463-false-1751368125400-target
+      source: '1751367826463'
+      sourceHandle: 'false'
+      target: '1751368125400'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1749858639692-false-1749858977305-target
+      source: '1749858639692'
+      sourceHandle: 'false'
+      target: '1749858977305'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: tool
+      id: 1748981258358-source-1747811049738-target
+      source: '1748981258358'
+      sourceHandle: source
+      target: '1747811049738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: tool
+      id: 17498593785460-source-1747811049738-target
+      source: '17498593785460'
+      sourceHandle: source
+      target: '1747811049738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: tool
+      id: 17498593766000-source-1747811049738-target
+      source: '17498593766000'
+      sourceHandle: source
+      target: '1747811049738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: tool
+      id: 1749858977305-source-1747811049738-target
+      source: '1749858977305'
+      sourceHandle: source
+      target: '1747811049738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1747811049738-source-1744226383626-target
+      source: '1747811049738'
+      sourceHandle: source
+      target: '1744226383626'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1751368125400-source-1751369759146-target
+      source: '1751368125400'
+      sourceHandle: source
+      target: '1751369759146'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - label: 이미지 용도 (미지정 시 canny 가 기본값)
+          max_length: 48
+          options:
+          - controlnet canny
+          - controlnet depth
+          - image to image
+          required: false
+          type: select
+          variable: image_mode
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: 사용 이미지
+          max_length: 48
+          options: []
+          required: false
+          type: file
+          variable: image_using
+      height: 116
+      id: '1744115843538'
+      position:
+        x: -434.45898855395194
+        y: 5.943924794336155
+      positionAbsolute:
+        x: -434.45898855395194
+        y: 5.943924794336155
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '* method : {{#1744115843538.image_mode#}}
+
+          * prompt : {{#1748981258358.text#}}
+
+          * image
+
+          {{#1747811049738.files#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 답변
+        type: answer
+        variables: []
+      height: 143
+      id: '1744226383626'
+      position:
+        x: 1118.3822314888216
+        y: 22.89598728734869
+      positionAbsolute:
+        x: 1118.3822314888216
+        y: 22.89598728734869
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: exported from ComfyUI workflow
+            ja_JP: ComfyUI よりエクスポートされたワークフロー
+            pt_BR: exported from ComfyUI workflow
+            zh_Hans: 从ComfyUI的工作流中导出
+          label:
+            en_US: Workflow JSON
+            ja_JP: ワークフロー JSON
+            pt_BR: Workflow JSON
+            zh_Hans: Workflow JSON
+          llm_description: ''
+          max: null
+          min: null
+          name: workflow_json
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The input images
+            ja_JP: 入力画像
+            pt_BR: The input images
+            zh_Hans: 输入的图片
+          label:
+            en_US: Input Images
+            ja_JP: Input Images
+            pt_BR: Input Images
+            zh_Hans: 输入的图片
+          llm_description: The input images, used to transfer to the comfyui workflow
+            to generate another image.
+          max: null
+          min: null
+          name: images
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: files
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            ja_JP: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            pt_BR: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            zh_Hans: 当工作流有多个图片节点时，输入这些节点的ID列表，图片将按列表顺序传给ComfyUI
+          label:
+            en_US: Image Node ID List
+            ja_JP: Image Node ID List
+            pt_BR: Image Node ID List
+            zh_Hans: 图片节点ID列表
+          llm_description: ''
+          max: null
+          min: null
+          name: image_ids
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            ja_JP: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            pt_BR: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            zh_Hans: 如果需要每次生成时使用不同的种子，需要输入包含种子的节点的ID
+          label:
+            en_US: Seed Node Id
+            ja_JP: Seed Node Id
+            pt_BR: Seed Node Id
+            zh_Hans: 种子节点ID
+          llm_description: ''
+          max: null
+          min: null
+          name: seed_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          image_ids: ''
+          images: ''
+          seed_id: ''
+          workflow_json: ''
+        provider_id: langgenius/comfyui/comfyui
+        provider_name: langgenius/comfyui/comfyui
+        provider_type: builtin
+        selected: true
+        title: workflow
+        tool_configurations: {}
+        tool_description: Run ComfyUI workflow.
+        tool_label: workflow
+        tool_name: workflow
+        tool_parameters:
+          image_ids:
+            type: mixed
+            value: '14'
+          images:
+            type: variable
+            value:
+            - '1744115843538'
+            - image_using
+          seed_id:
+            type: mixed
+            value: '3'
+          workflow_json:
+            type: mixed
+            value: "{\n  \"3\": {\n    \"inputs\": {\n      \"seed\": 126172003657836,\n\
+              \      \"steps\": 30,\n      \"cfg\": 7,\n      \"sampler_name\": \"\
+              euler_ancestral\",\n      \"scheduler\": \"normal\",\n      \"denoise\"\
+              : [\n        \"109\",\n        1\n      ],\n      \"model\": [\n   \
+              \     \"4\",\n        0\n      ],\n      \"positive\": [\n        \"\
+              87\",\n        0\n      ],\n      \"negative\": [\n        \"100\",\n\
+              \        0\n      ],\n      \"latent_image\": [\n        \"101\",\n\
+              \        0\n      ]\n    },\n    \"class_type\": \"KSampler\",\n   \
+              \ \"_meta\": {\n      \"title\": \"KSampler\"\n    }\n  },\n  \"4\"\
+              : {\n    \"inputs\": {\n      \"ckpt_name\": \"IXL\\\\waiNSFWIllustrious_v140.safetensors\"\
+              \n    },\n    \"class_type\": \"CheckpointLoaderSimple\",\n    \"_meta\"\
+              : {\n      \"title\": \"체크포인트 로드\"\n    }\n  },\n  \"5\": {\n    \"\
+              inputs\": {\n      \"width\": [\n        \"52\",\n        0\n      ],\n\
+              \      \"height\": [\n        \"53\",\n        0\n      ],\n      \"\
+              batch_size\": 1\n    },\n    \"class_type\": \"EmptyLatentImage\",\n\
+              \    \"_meta\": {\n      \"title\": \"빈 잠재 이미지\"\n    }\n  },\n  \"\
+              6\": {\n    \"inputs\": {\n      \"text\": \"masterpiece,best quality,amazing\
+              \ quality,{{#1748981258358.text#}}\",\n      \"clip\": [\n        \"\
+              4\",\n        1\n      ]\n    },\n    \"class_type\": \"CLIPTextEncode\"\
+              ,\n    \"_meta\": {\n      \"title\": \"CLIP 텍스트 인코딩 (프롬프트)\"\n    }\n\
+              \  },\n  \"7\": {\n    \"inputs\": {\n      \"text\": \"bad quality,worst\
+              \ quality,worst detail,bad hands,bad anatomy,sketch,grayscale,monotone,censor,score_4,\
+              \ score_3, score_2, score_1\",\n      \"clip\": [\n        \"4\",\n\
+              \        1\n      ]\n    },\n    \"class_type\": \"CLIPTextEncode\"\
+              ,\n    \"_meta\": {\n      \"title\": \"CLIP 텍스트 인코딩 (프롬프트)\"\n    }\n\
+              \  },\n  \"8\": {\n    \"inputs\": {\n      \"samples\": [\n       \
+              \ \"3\",\n        0\n      ],\n      \"vae\": [\n        \"4\",\n  \
+              \      2\n      ]\n    },\n    \"class_type\": \"VAEDecode\",\n    \"\
+              _meta\": {\n      \"title\": \"VAE 디코드\"\n    }\n  },\n  \"9\": {\n\
+              \    \"inputs\": {\n      \"filename_prefix\": \"comfyui_m4max1_\",\n\
+              \      \"images\": [\n        \"115\",\n        0\n      ]\n    },\n\
+              \    \"class_type\": \"SaveImage\",\n    \"_meta\": {\n      \"title\"\
+              : \"이미지 저장\"\n    }\n  },\n  \"10\": {\n    \"inputs\": {\n      \"\
+              control_net_name\": \"noobaiXLControlnet_epsCanny.safetensors\"\n  \
+              \  },\n    \"class_type\": \"ControlNetLoader\",\n    \"_meta\": {\n\
+              \      \"title\": \"컨트롤넷 모델 로드\"\n    }\n  },\n  \"11\": {\n    \"inputs\"\
+              : {\n      \"type\": \"canny/lineart/anime_lineart/mlsd\",\n      \"\
+              control_net\": [\n        \"10\",\n        0\n      ]\n    },\n    \"\
+              class_type\": \"SetUnionControlNetType\",\n    \"_meta\": {\n      \"\
+              title\": \"통합 컨트롤넷 유형 설정\"\n    }\n  },\n  \"13\": {\n    \"inputs\"\
+              : {\n      \"strength\": 1,\n      \"start_percent\": 0,\n      \"end_percent\"\
+              : 1,\n      \"positive\": [\n        \"6\",\n        0\n      ],\n \
+              \     \"negative\": [\n        \"7\",\n        0\n      ],\n      \"\
+              control_net\": [\n        \"79\",\n        0\n      ],\n      \"image\"\
+              : [\n        \"88\",\n        0\n      ],\n      \"vae\": [\n      \
+              \  \"4\",\n        2\n      ]\n    },\n    \"class_type\": \"ControlNetApplyAdvanced\"\
+              ,\n    \"_meta\": {\n      \"title\": \"컨트롤넷 적용\"\n    }\n  },\n  \"\
+              14\": {\n    \"inputs\": {\n      \"image\": \"a11798d4-2392-4981-9ce2-5cd86157aa36.png\"\
+              \n    },\n    \"class_type\": \"LoadImage\",\n    \"_meta\": {\n   \
+              \   \"title\": \"이미지 로드\"\n    }\n  },\n  \"30\": {\n    \"inputs\"\
+              : {\n      \"images\": [\n        \"88\",\n        0\n      ]\n    },\n\
+              \    \"class_type\": \"PreviewImage\",\n    \"_meta\": {\n      \"title\"\
+              : \"이미지 미리보기\"\n    }\n  },\n  \"36\": {\n    \"inputs\": {\n      \"\
+              image\": [\n        \"14\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"Image Aspect Ratio\",\n    \"_meta\": {\n      \"title\": \"Image\
+              \ Aspect Ratio\"\n    }\n  },\n  \"42\": {\n    \"inputs\": {\n    \
+              \  \"label\": \"Debug(width) \",\n      \"number\": [\n        \"47\"\
+              ,\n        0\n      ]\n    },\n    \"class_type\": \"Debug Number to\
+              \ Console\",\n    \"_meta\": {\n      \"title\": \"Debug Number to Console\"\
+              \n    }\n  },\n  \"45\": {\n    \"inputs\": {\n      \"operation\":\
+              \ \"division\",\n      \"number_a\": [\n        \"46\",\n        0\n\
+              \      ],\n      \"number_b\": [\n        \"36\",\n        0\n     \
+              \ ]\n    },\n    \"class_type\": \"Number Operation\",\n    \"_meta\"\
+              : {\n      \"title\": \"Number Operation\"\n    }\n  },\n  \"46\": {\n\
+              \    \"inputs\": {\n      \"number_type\": \"float\",\n      \"number\"\
+              : 1048576.0000000002\n    },\n    \"class_type\": \"Constant Number\"\
+              ,\n    \"_meta\": {\n      \"title\": \"Constant Number\"\n    }\n \
+              \ },\n  \"47\": {\n    \"inputs\": {\n      \"operation\": \"multiplication\"\
+              ,\n      \"number_a\": [\n        \"50\",\n        0\n      ],\n   \
+              \   \"number_b\": [\n        \"36\",\n        0\n      ]\n    },\n \
+              \   \"class_type\": \"Number Operation\",\n    \"_meta\": {\n      \"\
+              title\": \"Number Operation\"\n    }\n  },\n  \"49\": {\n    \"inputs\"\
+              : {\n      \"label\": \"Debug(height) \",\n      \"number\": [\n   \
+              \     \"50\",\n        0\n      ]\n    },\n    \"class_type\": \"Debug\
+              \ Number to Console\",\n    \"_meta\": {\n      \"title\": \"Debug Number\
+              \ to Console\"\n    }\n  },\n  \"50\": {\n    \"inputs\": {\n      \"\
+              operation\": \"exponentiation\",\n      \"number_a\": [\n        \"\
+              45\",\n        0\n      ],\n      \"number_b\": [\n        \"51\",\n\
+              \        0\n      ]\n    },\n    \"class_type\": \"Number Operation\"\
+              ,\n    \"_meta\": {\n      \"title\": \"Number Operation\"\n    }\n\
+              \  },\n  \"51\": {\n    \"inputs\": {\n      \"number_type\": \"float\"\
+              ,\n      \"number\": 0.5000000000000001\n    },\n    \"class_type\"\
+              : \"Constant Number\",\n    \"_meta\": {\n      \"title\": \"Constant\
+              \ Number\"\n    }\n  },\n  \"52\": {\n    \"inputs\": {\n      \"number\"\
+              : [\n        \"47\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"Number to Int\",\n    \"_meta\": {\n      \"title\": \"Number to\
+              \ Int\"\n    }\n  },\n  \"53\": {\n    \"inputs\": {\n      \"number\"\
+              : [\n        \"50\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"Number to Int\",\n    \"_meta\": {\n      \"title\": \"Number to\
+              \ Int\"\n    }\n  },\n  \"60\": {\n    \"inputs\": {\n      \"control_net_a\"\
+              : [\n        \"11\",\n        0\n      ],\n      \"control_net_b\":\
+              \ [\n        \"11\",\n        0\n      ],\n      \"boolean\": [\n  \
+              \      \"82\",\n        2\n      ]\n    },\n    \"class_type\": \"Control\
+              \ Net Model Input Switch\",\n    \"_meta\": {\n      \"title\": \"Control\
+              \ Net Model Input Switch\"\n    }\n  },\n  \"65\": {\n    \"inputs\"\
+              : {\n      \"value\": \"{{#conversation.image_mode_key#}}\"\n    },\n\
+              \    \"class_type\": \"PrimitiveString\",\n    \"_meta\": {\n      \"\
+              title\": \"Input for ImageUsingTypeString\"\n    }\n  },\n  \"72\":\
+              \ {\n    \"inputs\": {\n      \"mode\": \"similarity\",\n      \"tolerance\"\
+              : 0,\n      \"text_a\": [\n        \"74\",\n        0\n      ],\n  \
+              \    \"text_b\": [\n        \"75\",\n        2\n      ]\n    },\n  \
+              \  \"class_type\": \"Text Compare\",\n    \"_meta\": {\n      \"title\"\
+              : \"= Image to Image\"\n    }\n  },\n  \"74\": {\n    \"inputs\": {\n\
+              \      \"mode\": \"similarity\",\n      \"tolerance\": 0,\n      \"\
+              text_a\": [\n        \"82\",\n        0\n      ],\n      \"text_b\"\
+              : [\n        \"75\",\n        1\n      ]\n    },\n    \"class_type\"\
+              : \"Text Compare\",\n    \"_meta\": {\n      \"title\": \"= Controlnet\
+              \ Depth\"\n    }\n  },\n  \"75\": {\n    \"inputs\": {\n      \"text\"\
+              : \"controlnet_canny\",\n      \"text_b\": \"controlnet_depth\",\n \
+              \     \"text_c\": \"image_to_image\",\n      \"text_d\": \"\"\n    },\n\
+              \    \"class_type\": \"Text String\",\n    \"_meta\": {\n      \"title\"\
+              : \"ImageUsingTypeString\"\n    }\n  },\n  \"78\": {\n    \"inputs\"\
+              : {\n      \"string\": [\n        \"65\",\n        0\n      ]\n    },\n\
+              \    \"class_type\": \"String to Text\",\n    \"_meta\": {\n      \"\
+              title\": \"String to Text\"\n    }\n  },\n  \"79\": {\n    \"inputs\"\
+              : {\n      \"control_net_a\": [\n        \"81\",\n        0\n      ],\n\
+              \      \"control_net_b\": [\n        \"60\",\n        0\n      ],\n\
+              \      \"boolean\": [\n        \"74\",\n        2\n      ]\n    },\n\
+              \    \"class_type\": \"Control Net Model Input Switch\",\n    \"_meta\"\
+              : {\n      \"title\": \"Control Net Model Input Switch\"\n    }\n  },\n\
+              \  \"80\": {\n    \"inputs\": {\n      \"control_net_name\": \"noobaiXLControlnet_epsDepthMidasV11.safetensors\"\
+              \n    },\n    \"class_type\": \"ControlNetLoader\",\n    \"_meta\":\
+              \ {\n      \"title\": \"컨트롤넷 모델 로드\"\n    }\n  },\n  \"81\": {\n   \
+              \ \"inputs\": {\n      \"type\": \"depth\",\n      \"control_net\":\
+              \ [\n        \"80\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"SetUnionControlNetType\",\n    \"_meta\": {\n      \"title\": \"\
+              통합 컨트롤넷 유형 설정\"\n    }\n  },\n  \"82\": {\n    \"inputs\": {\n     \
+              \ \"mode\": \"similarity\",\n      \"tolerance\": 0,\n      \"text_a\"\
+              : [\n        \"78\",\n        0\n      ],\n      \"text_b\": [\n   \
+              \     \"75\",\n        0\n      ]\n    },\n    \"class_type\": \"Text\
+              \ Compare\",\n    \"_meta\": {\n      \"title\": \"= Controlnet Canny\"\
+              \n    }\n  },\n  \"87\": {\n    \"inputs\": {\n      \"conditioning_a\"\
+              : [\n        \"13\",\n        0\n      ],\n      \"conditioning_b\"\
+              : [\n        \"6\",\n        0\n      ],\n      \"boolean\": [\n   \
+              \     \"90\",\n        0\n      ]\n    },\n    \"class_type\": \"Conditioning\
+              \ Input Switch\",\n    \"_meta\": {\n      \"title\": \"Conditioning\
+              \ Input Switch\"\n    }\n  },\n  \"88\": {\n    \"inputs\": {\n    \
+              \  \"image_a\": [\n        \"107\",\n        0\n      ],\n      \"image_b\"\
+              : [\n        \"14\",\n        0\n      ],\n      \"boolean\": [\n  \
+              \      \"82\",\n        2\n      ]\n    },\n    \"class_type\": \"Image\
+              \ Input Switch\",\n    \"_meta\": {\n      \"title\": \"Image Input\
+              \ Switch\"\n    }\n  },\n  \"90\": {\n    \"inputs\": {\n      \"boolean_a\"\
+              : [\n        \"82\",\n        2\n      ],\n      \"boolean_b\": [\n\
+              \        \"74\",\n        2\n      ]\n    },\n    \"class_type\": \"\
+              Logic Comparison OR\",\n    \"_meta\": {\n      \"title\": \"Is using\
+              \ controlnet\"\n    }\n  },\n  \"91\": {\n    \"inputs\": {\n      \"\
+              pixels\": [\n        \"92\",\n        0\n      ],\n      \"vae\": [\n\
+              \        \"4\",\n        2\n      ]\n    },\n    \"class_type\": \"\
+              VAEEncode\",\n    \"_meta\": {\n      \"title\": \"VAE 인코드\"\n    }\n\
+              \  },\n  \"92\": {\n    \"inputs\": {\n      \"upscale_method\": \"\
+              lanczos\",\n      \"width\": [\n        \"52\",\n        0\n      ],\n\
+              \      \"height\": [\n        \"53\",\n        0\n      ],\n      \"\
+              crop\": \"disabled\",\n      \"image\": [\n        \"14\",\n       \
+              \ 0\n      ]\n    },\n    \"class_type\": \"ImageScale\",\n    \"_meta\"\
+              : {\n      \"title\": \"이미지 확대\"\n    }\n  },\n  \"96\": {\n    \"inputs\"\
+              : {\n      \"value\": false\n    },\n    \"class_type\": \"PrimitiveBoolean\"\
+              ,\n    \"_meta\": {\n      \"title\": \"논리값\"\n    }\n  },\n  \"97\"\
+              : {\n    \"inputs\": {\n      \"boolean_a\": [\n        \"72\",\n  \
+              \      2\n      ],\n      \"boolean_b\": [\n        \"96\",\n      \
+              \  0\n      ]\n    },\n    \"class_type\": \"Logic Comparison OR\",\n\
+              \    \"_meta\": {\n      \"title\": \"Is using image to image\"\n  \
+              \  }\n  },\n  \"100\": {\n    \"inputs\": {\n      \"conditioning_a\"\
+              : [\n        \"13\",\n        1\n      ],\n      \"conditioning_b\"\
+              : [\n        \"7\",\n        0\n      ],\n      \"boolean\": [\n   \
+              \     \"90\",\n        0\n      ]\n    },\n    \"class_type\": \"Conditioning\
+              \ Input Switch\",\n    \"_meta\": {\n      \"title\": \"Conditioning\
+              \ Input Switch\"\n    }\n  },\n  \"101\": {\n    \"inputs\": {\n   \
+              \   \"latent_a\": [\n        \"91\",\n        0\n      ],\n      \"\
+              latent_b\": [\n        \"5\",\n        0\n      ],\n      \"boolean\"\
+              : [\n        \"97\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"Latent Input Switch\",\n    \"_meta\": {\n      \"title\": \"Latent\
+              \ Input Switch\"\n    }\n  },\n  \"107\": {\n    \"inputs\": {\n   \
+              \   \"enable_threshold\": \"false\",\n      \"threshold_low\": 0.39000000000000007,\n\
+              \      \"threshold_high\": 0.7800000000000001,\n      \"images\": [\n\
+              \        \"14\",\n        0\n      ]\n    },\n    \"class_type\": \"\
+              Image Canny Filter\",\n    \"_meta\": {\n      \"title\": \"Image Canny\
+              \ Filter\"\n    }\n  },\n  \"109\": {\n    \"inputs\": {\n      \"number_a\"\
+              : [\n        \"111\",\n        0\n      ],\n      \"number_b\": [\n\
+              \        \"110\",\n        0\n      ],\n      \"boolean\": [\n     \
+              \   \"97\",\n        0\n      ]\n    },\n    \"class_type\": \"Number\
+              \ Input Switch\",\n    \"_meta\": {\n      \"title\": \"Number Input\
+              \ Switch\"\n    }\n  },\n  \"110\": {\n    \"inputs\": {\n      \"number_type\"\
+              : \"float\",\n      \"number\": 1.0000000000000002\n    },\n    \"class_type\"\
+              : \"Constant Number\",\n    \"_meta\": {\n      \"title\": \"Denoise\
+              \ for Noise\"\n    }\n  },\n  \"111\": {\n    \"inputs\": {\n      \"\
+              number_type\": \"float\",\n      \"number\": 0.3500000000000001\n  \
+              \  },\n    \"class_type\": \"Constant Number\",\n    \"_meta\": {\n\
+              \      \"title\": \"Denoise for Image to Image\"\n    }\n  },\n  \"\
+              113\": {\n    \"inputs\": {\n      \"upscale_model\": [\n        \"\
+              114\",\n        0\n      ],\n      \"image\": [\n        \"8\",\n  \
+              \      0\n      ]\n    },\n    \"class_type\": \"ImageUpscaleWithModel\"\
+              ,\n    \"_meta\": {\n      \"title\": \"모델을 사용한 이미지 확대\"\n    }\n  },\n\
+              \  \"114\": {\n    \"inputs\": {\n      \"model_name\": \"RealESRGAN_x4plus_anime_6B.pth\"\
+              \n    },\n    \"class_type\": \"UpscaleModelLoader\",\n    \"_meta\"\
+              : {\n      \"title\": \"업스케일 모델 로드\"\n    }\n  },\n  \"115\": {\n  \
+              \  \"inputs\": {\n      \"upscale_method\": \"lanczos\",\n      \"scale_by\"\
+              : 0.4000000000000001,\n      \"image\": [\n        \"113\",\n      \
+              \  0\n      ]\n    },\n    \"class_type\": \"ImageScaleBy\",\n    \"\
+              _meta\": {\n      \"title\": \"이미지 확대 비율\"\n    }\n  }\n}"
+        type: tool
+      height: 54
+      id: '1747811049738'
+      position:
+        x: 813.1226361467934
+        y: 22.89598728734869
+      positionAbsolute:
+        x: 813.1226361467934
+        y: 22.89598728734869
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemma-3-27b-it-abliterated
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: f387e4ff-0938-4aab-b4fc-be8f96e2af49
+          role: system
+          text: ''
+        - id: 1dbb4bd2-82ca-4567-af98-9712a560e7a8
+          role: user
+          text: 'Please write a detailed SDXL prompt for creating AI image using given
+            image. Remove prompt like sketch or lineart. Remove prompt like realistic.
+            Only prompt, no additional text.
+
+            Please take the content written below into account when generating the
+            prompt.
+
+
+            {{#sys.query#}}
+
+
+            '
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1744115843538'
+            - image_using
+          enabled: true
+      height: 90
+      id: '1748981258358'
+      position:
+        x: 175.8231332992856
+        y: 51.955981302162016
+      positionAbsolute:
+        x: 175.8231332992856
+        y: 51.955981302162016
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: e23008f2-a55b-4006-87b8-c93904c1f672
+            value: controlnet canny
+            varType: string
+            variable_selector:
+            - '1744115843538'
+            - image_mode
+          id: 'true'
+          logical_operator: and
+        - case_id: 6c09b274-abf3-487d-84ac-d56eb603c16f
+          conditions:
+          - comparison_operator: is
+            id: 984c3686-9423-449e-89e3-263d1dfcdf74
+            value: controlnet depth
+            varType: string
+            variable_selector:
+            - '1744115843538'
+            - image_mode
+          id: 6c09b274-abf3-487d-84ac-d56eb603c16f
+          logical_operator: and
+        - case_id: 042e23bb-836b-4df2-8a15-ea81ec9432ee
+          conditions:
+          - comparison_operator: is
+            id: f5c42b1f-af47-45a0-8e9d-2d88a31c3b25
+            value: image to image
+            varType: string
+            variable_selector:
+            - '1744115843538'
+            - image_mode
+          id: 042e23bb-836b-4df2-8a15-ea81ec9432ee
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 222
+      id: '1749858639692'
+      position:
+        x: 175.8231332992856
+        y: -263.60949527377056
+      positionAbsolute:
+        x: 175.8231332992856
+        y: -263.60949527377056
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: controlnet_canny
+          variable_selector:
+          - conversation
+          - image_mode_key
+          write_mode: over-write
+        selected: false
+        title: 변수 할당자
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1749858977305'
+      position:
+        x: 490.14987239478944
+        y: -279.0802313849232
+      positionAbsolute:
+        x: 490.14987239478944
+        y: -279.0802313849232
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: controlnet_depth
+          variable_selector:
+          - conversation
+          - image_mode_key
+          write_mode: over-write
+        selected: false
+        title: 변수 할당자 (1)
+        type: assigner
+        version: '2'
+      height: 88
+      id: '17498593766000'
+      position:
+        x: 490.14987239478944
+        y: -170.95925542710137
+      positionAbsolute:
+        x: 490.14987239478944
+        y: -170.95925542710137
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: constant
+          operation: set
+          value: image_to_image
+          variable_selector:
+          - conversation
+          - image_mode_key
+          write_mode: over-write
+        selected: false
+        title: 변수 할당자 (1)
+        type: assigner
+        version: '2'
+      height: 88
+      id: '17498593785460'
+      position:
+        x: 490.14987239478944
+        y: -60.21512667258571
+      positionAbsolute:
+        x: 490.14987239478944
+        y: -60.21512667258571
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: exists
+            id: 08835c96-7677-4b80-93e3-623967f5ad53
+            value: ''
+            varType: file
+            variable_selector:
+            - '1744115843538'
+            - image_using
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 2
+        type: if-else
+      height: 126
+      id: '1751367826463'
+      position:
+        x: -151.52900883164529
+        y: 0.35211702745033335
+      positionAbsolute:
+        x: -151.52900883164529
+        y: 0.35211702745033335
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: exported from ComfyUI workflow
+            ja_JP: ComfyUI よりエクスポートされたワークフロー
+            pt_BR: exported from ComfyUI workflow
+            zh_Hans: 从ComfyUI的工作流中导出
+          label:
+            en_US: Workflow JSON
+            ja_JP: ワークフロー JSON
+            pt_BR: Workflow JSON
+            zh_Hans: Workflow JSON
+          llm_description: ''
+          max: null
+          min: null
+          name: workflow_json
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The input images
+            ja_JP: 入力画像
+            pt_BR: The input images
+            zh_Hans: 输入的图片
+          label:
+            en_US: Input Images
+            ja_JP: Input Images
+            pt_BR: Input Images
+            zh_Hans: 输入的图片
+          llm_description: The input images, used to transfer to the comfyui workflow
+            to generate another image.
+          max: null
+          min: null
+          name: images
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: files
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            ja_JP: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            pt_BR: When the workflow has multiple image nodes, enter the ID list of
+              these nodes, and the images will be passed to ComfyUI in the order of
+              the list.
+            zh_Hans: 当工作流有多个图片节点时，输入这些节点的ID列表，图片将按列表顺序传给ComfyUI
+          label:
+            en_US: Image Node ID List
+            ja_JP: Image Node ID List
+            pt_BR: Image Node ID List
+            zh_Hans: 图片节点ID列表
+          llm_description: ''
+          max: null
+          min: null
+          name: image_ids
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            ja_JP: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            pt_BR: If you need to generate different images each time, you need to
+              enter the ID of the seed node.
+            zh_Hans: 如果需要每次生成时使用不同的种子，需要输入包含种子的节点的ID
+          label:
+            en_US: Seed Node Id
+            ja_JP: Seed Node Id
+            pt_BR: Seed Node Id
+            zh_Hans: 种子节点ID
+          llm_description: ''
+          max: null
+          min: null
+          name: seed_id
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          image_ids: ''
+          images: ''
+          seed_id: ''
+          workflow_json: ''
+        provider_id: langgenius/comfyui/comfyui
+        provider_name: langgenius/comfyui/comfyui
+        provider_type: builtin
+        selected: false
+        title: workflow
+        tool_configurations: {}
+        tool_description: Run ComfyUI workflow.
+        tool_label: workflow
+        tool_name: workflow
+        tool_parameters:
+          seed_id:
+            type: mixed
+            value: '3'
+          workflow_json:
+            type: mixed
+            value: "{\n  \"3\": {\n    \"inputs\": {\n      \"seed\": 312362819430148,\n\
+              \      \"steps\": 30,\n      \"cfg\": 5,\n      \"sampler_name\": \"\
+              euler_ancestral\",\n      \"scheduler\": \"normal\",\n      \"denoise\"\
+              : 1,\n      \"model\": [\n        \"4\",\n        0\n      ],\n    \
+              \  \"positive\": [\n        \"6\",\n        0\n      ],\n      \"negative\"\
+              : [\n        \"7\",\n        0\n      ],\n      \"latent_image\": [\n\
+              \        \"5\",\n        0\n      ]\n    },\n    \"class_type\": \"\
+              KSampler\",\n    \"_meta\": {\n      \"title\": \"KSampler\"\n    }\n\
+              \  },\n  \"4\": {\n    \"inputs\": {\n      \"ckpt_name\": \"IXL\\\\\
+              waiNSFWIllustrious_v140.safetensors\"\n    },\n    \"class_type\": \"\
+              CheckpointLoaderSimple\",\n    \"_meta\": {\n      \"title\": \"체크포인트\
+              \ 로드\"\n    }\n  },\n  \"5\": {\n    \"inputs\": {\n      \"width\"\
+              : 1536,\n      \"height\": 1536,\n      \"batch_size\": 1\n    },\n\
+              \    \"class_type\": \"EmptyLatentImage\",\n    \"_meta\": {\n     \
+              \ \"title\": \"빈 잠재 이미지\"\n    }\n  },\n  \"6\": {\n    \"inputs\":\
+              \ {\n      \"text\": \"masterpiece, best quality, highly detailed illustration,\
+              \ {{#sys.query#}}\",\n      \"clip\": [\n        \"4\",\n        1\n\
+              \      ]\n    },\n    \"class_type\": \"CLIPTextEncode\",\n    \"_meta\"\
+              : {\n      \"title\": \"Prompt\"\n    }\n  },\n  \"7\": {\n    \"inputs\"\
+              : {\n      \"text\": \"worst quality, low quality, lowers, bad hands,\
+              \ mutated hands, grayscale, monotone, censored\",\n      \"clip\": [\n\
+              \        \"4\",\n        1\n      ]\n    },\n    \"class_type\": \"\
+              CLIPTextEncode\",\n    \"_meta\": {\n      \"title\": \"Negative Prompt\"\
+              \n    }\n  },\n  \"8\": {\n    \"inputs\": {\n      \"samples\": [\n\
+              \        \"3\",\n        0\n      ],\n      \"vae\": [\n        \"4\"\
+              ,\n        2\n      ]\n    },\n    \"class_type\": \"VAEDecode\",\n\
+              \    \"_meta\": {\n      \"title\": \"VAE 디코드\"\n    }\n  },\n  \"9\"\
+              : {\n    \"inputs\": {\n      \"filename_prefix\": \"comfyui_m4max1_\"\
+              ,\n      \"images\": [\n        \"115\",\n        0\n      ]\n    },\n\
+              \    \"class_type\": \"SaveImage\",\n    \"_meta\": {\n      \"title\"\
+              : \"이미지 저장\"\n    }\n  },\n  \"113\": {\n    \"inputs\": {\n      \"\
+              upscale_model\": [\n        \"114\",\n        0\n      ],\n      \"\
+              image\": [\n        \"8\",\n        0\n      ]\n    },\n    \"class_type\"\
+              : \"ImageUpscaleWithModel\",\n    \"_meta\": {\n      \"title\": \"\
+              모델을 사용한 이미지 확대\"\n    }\n  },\n  \"114\": {\n    \"inputs\": {\n   \
+              \   \"model_name\": \"RealESRGAN_x4plus_anime_6B.pth\"\n    },\n   \
+              \ \"class_type\": \"UpscaleModelLoader\",\n    \"_meta\": {\n      \"\
+              title\": \"업스케일 모델 로드\"\n    }\n  },\n  \"115\": {\n    \"inputs\":\
+              \ {\n      \"upscale_method\": \"lanczos\",\n      \"scale_by\": 0.4000000000000001,\n\
+              \      \"image\": [\n        \"113\",\n        0\n      ]\n    },\n\
+              \    \"class_type\": \"ImageScaleBy\",\n    \"_meta\": {\n      \"title\"\
+              : \"이미지 확대 비율\"\n    }\n  }\n}"
+        type: tool
+      height: 54
+      id: '1751368125400'
+      position:
+        x: 806.6145024001705
+        y: 175.95138949609802
+      positionAbsolute:
+        x: 806.6145024001705
+        y: 175.95138949609802
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1751368125400.files#}}'
+        desc: ''
+        selected: false
+        title: 답변 2
+        type: answer
+        variables: []
+      height: 105
+      id: '1751369759146'
+      position:
+        x: 1118.3822314888216
+        y: 211.18478038680166
+      positionAbsolute:
+        x: 1118.3822314888216
+        y: 211.18478038680166
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -377.702901039843
+      y: 469.28436820102274
+      zoom: 0.983261960579551
